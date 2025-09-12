@@ -1,0 +1,16 @@
+# Etapa 1 – Cadastro
+print("=== Cadastro de Usuário ===")
+usuario_cadastrado = input("Crie um nome de usuário: ")
+senha_cadastrada = input("Crie uma senha: ")
+usuario_login = input("Digite o nome de usuário: ")
+senha_login = input("Digite a senha: ")
+
+
+# Etapa 2 – Login
+print("=== Login ===")
+
+while  usuario_cadastrado !=  usuario_login or senha_cadastrada != senha_login:
+    print("\ERRADO. Nome de usuário ou senha incorretos. Tente novamente.\n")
+    usuario_login = input("Digite o nome de usuário: ")
+    senha_login = input("Digite a senha: ")
+print("CORRETO. Login realizado com sucesso.")          
