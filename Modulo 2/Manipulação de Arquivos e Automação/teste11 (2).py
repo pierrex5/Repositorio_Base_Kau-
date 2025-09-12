@@ -1,0 +1,16 @@
+import pyautogui
+pyautogui.mouseInfo()
+
+pyautogui.press ("Win")
+pyautogui.sleep(2)
+pyautogui.write ("Calc")
+pyautogui.sleep(1)
+pyautogui.press("Enter")
+pyautogui.sleep(1)
+pyautogui.click(223,397)
+pyautogui.sleep(1)
+pyautogui.write("+")
+pyautogui.sleep(1)
+pyautogui.click(222,523)
+pyautogui.sleep (2)
+pyautogui.write("=")
