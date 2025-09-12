@@ -1,0 +1,2606 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Casa do Basquete de Ricardo Lima</title>
+      <style>
+        /* Reset básico */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        /* Animação fade-in */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        body {
+          font-family: 'Inter', sans-serif;
+          background-color: #f4f7f9;
+          color: #333;
+          line-height: 1.6;
+          padding: 20px;
+          animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Navbar */
+        nav {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          margin-bottom: 30px;
+          background: #1a2a40;
+          padding: 15px 0;
+          border-radius: 12px;
+          box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+          animation: fadeInUp 1.2s ease forwards;
+        }
+
+        nav button {
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          padding: 10px 20px;
+          border-radius: 25px;
+          transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav button:hover, nav button.active {
+          background-color: #ff6f00;
+          color: white;
+          transform: scale(1.1);
+          box-shadow: 0 5px 12px rgba(255,111,0,0.6);
+          outline: none;
+        }
+
+        header {
+          background-color: #1a2a40;
+          color: white;
+          padding: 25px 40px;
+          border-radius: 15px;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+          margin-bottom: 40px;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          animation: fadeInUp 1.4s ease forwards;
+        }
+
+        header::before {
+          content: "";
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          background: radial-gradient(circle at center, #ff6f00 70%, #cc5f00 100%);
+          top: -40px;
+          right: -40px;
+          opacity: 0.3;
+          z-index: 0;
+          animation: fadeInUp 1.6s ease forwards;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+          margin-bottom: 5px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          position: relative;
+          z-index: 1;
+          animation: fadeInUp 1.5s ease forwards;
+          text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #1a2a40;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ff6f00;
+            padding-bottom: 10px;
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            color: #1a2a40;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        main {
+          max-width: 1000px;
+          margin: 0 auto;
+          background: white;
+          padding: 35px 50px;
+          border-radius: 15px;
+          box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+          animation: fadeInUp 1.7s ease forwards;
+          min-height: 450px;
+        }
+
+        /* Seções da Home */
+        .home-section {
+          margin-bottom: 40px;
+        }
+        
+        .home-section h3 {
+          font-size: 1.5rem;
+          color: #1a2a40;
+          margin-bottom: 15px;
+          border-left: 5px solid #ff6f00;
+          padding-left: 10px;
+        }
+
+        /* Conteúdo das abas */
+        .tab-content {
+          animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Notícias - Estilo dos cards */
+        .news-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fefefe;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .news-card h3 {
+            margin-bottom: 10px;
+            color: #1a2a40;
+            font-size: 1.4rem;
+        }
+
+        .news-card .source {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .news-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .news-list {
+            margin-top: 20px;
+        }
+        
+        /* Tabelas */
+        .stats-container, .awards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .stats-container th, .stats-container td, .awards-table th, .awards-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+        }
+
+        .stats-container th, .awards-table th {
+            background-color: #1a2a40;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stats-container tbody tr:nth-child(odd), .awards-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        
+        .stats-container tbody tr:hover, .awards-table tbody tr:hover {
+            background-color: #eef2f5;
+        }
+
+        /* Debates - Estilo dos cards */
+        .debate-card {
+            border: 2px solid #1a2a40;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background: #eef5ff;
+        }
+
+        .debate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(26,42,64,0.2);
+        }
+
+        .debate-card h3 {
+            color: #ff6f00;
+            margin-bottom: 5px;
+        }
+
+        /* Seção de detalhe do debate */
+        #debate-detail {
+            display: none;
+            padding: 20px;
+            border: 2px solid #1a2a40;
+            border-radius: 15px;
+            background-color: #f8faff;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        #debate-detail .debate-content {
+          padding-top: 20px;
+        }
+
+        #debate-detail h3 {
+            color: #1a2a40;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #ff6f00;
+            padding-bottom: 8px;
+        }
+
+        #debate-detail p {
+            margin-bottom: 15px;
+        }
+
+        #debate-detail .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff6f00;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #debate-detail .back-btn:hover {
+            background-color: #cc5f00;
+        }
+        
+        /* Corridas - Seção de prêmios */
+        .award-section {
+            margin-bottom: 40px;
+        }
+        
+        .award-section h3 {
+            font-size: 1.5rem;
+            color: #1a2a40;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff6f00;
+            padding-bottom: 5px;
+        }
+
+        .player-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .player-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.3s ease;
+        }
+
+        .player-item:hover {
+            background-color: #f0f4f7;
+        }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .player-rank {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ff6f00;
+            width: 30px;
+            text-align: center;
+        }
+
+        .player-stats {
+            flex-grow: 1;
+        }
+
+        .player-stats strong {
+            color: #1a2a40;
+        }
+        
+        .player-stats span {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Loja - Grid de produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .product-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .product-card .team-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a2a40;
+        }
+
+        .product-card .product-price {
+            font-size: 1.2rem;
+            color: #ff6f00;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Minigames - Quiz */
+        #quiz-container button, .quiz-difficulty button {
+            background-color: #1a2a40;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #quiz-container button:hover, .quiz-difficulty button:hover {
+            background-color: #ff6f00;
+            transform: translateY(-2px);
+        }
+        
+        #quiz-container .correct {
+            background-color: #4CAF50;
+        }
+        
+        #quiz-container .incorrect {
+            background-color: #f44336;
+        }
+
+        .quiz-difficulty {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Estilos do Calendário */
+        .calendar-section h3 {
+            font-size: 1.5rem;
+            color: #1a2a40;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff6f00;
+            padding-bottom: 5px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+          nav {
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+
+          nav button {
+            flex: 1 1 auto;
+          }
+
+          main {
+            padding: 25px 20px;
+            min-height: auto;
+          }
+
+          h1 {
+            font-size: 2rem;
+          }
+
+          h2 {
+            font-size: 1.5rem;
+          }
+
+          .stats-container, .awards-table {
+            font-size: 0.9rem;
+          }
+
+          .stats-container th, .stats-container td, .awards-table th, .awards-table td {
+            padding: 8px 10px;
+          }
+        }
+        /* Minigame Forca */
+        #hangman-container {
+            text-align: center;
+        }
+        #word-display {
+            font-size: 3rem;
+            letter-spacing: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        #message {
+            font-size: 1.2rem;
+            color: #1a2a40;
+            margin: 20px 0;
+            min-height: 30px;
+        }
+        #clue-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        #letter-input {
+            padding: 10px;
+            font-size: 1.5rem;
+            width: 50px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        .hangman-btns {
+            padding: 10px 20px;
+            background-color: #1a2a40;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hangman-btns:hover {
+            background-color: #ff6f00;
+        }
+        #hangman-image {
+            margin: 20px 0;
+        }
+      </style>
+    </head>
+    <body>
+      <header>
+        <h1>Casa do Basquete de Ricardo Lima</h1>
+        <p>Sua fonte definitiva de análises, notícias e paixão pela NBA.</p>
+      </header>
+
+      <nav>
+        <button class="tab-btn active" data-tab="home">Home</button>
+        <button class="tab-btn" data-tab="estatisticas">Estatísticas</button>
+        <button class="tab-btn" data-tab="corridas">Corridas</button>
+        <button class="tab-btn" data-tab="debates">Debates</button>
+        <button class="tab-btn" data-tab="loja">Loja</button>
+        <button class="tab-btn" data-tab="calendario">Calendário</button>
+        <button class="tab-btn" data-tab="minigames">Minigames</button>
+      </nav>
+
+      <main>
+        <section id="home" class="tab-content">
+            <h2>Bem-vindo(a) de volta!</h2>
+            <p>Seja bem-vindo à nossa casa digital do basquete, onde a paixão pelo esporte se encontra com a análise aprofundada. Fique por dentro de tudo o que acontece na NBA e confira um resumo das principais seções do site:</p>
+            
+            <div class="home-section news-section">
+                <h3>Principais Notícias</h3>
+                <div class="news-list" style="margin-top: 30px;">
+                    <div class="news-card">
+                        <div class="source">14 de Agosto de 2025</div>
+                        <h3>Luka Doncic Anota 55 Pontos e Lidera Triunfo Épico</h3>
+                        <p>Em uma atuação histórica, Luka Doncic marcou 55 pontos, distribuiu 15 assistências e pegou 10 rebotes na vitória apertada dos Mavericks sobre o Suns. Uma atuação de gala que reforça o seu status de candidato ao prêmio de MVP da temporada.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="source">13 de Agosto de 2025</div>
+                    <h3>Troca Bombástica: Donovan Mitchell a Caminho do Lakers?</h3>
+                    <p>Fontes internas indicam que o Lakers está em negociações avançadas para uma troca que traria o armador Donovan Mitchell para a Califórnia. O acordo envolveria múltiplos jogadores e escolhas de draft, na tentativa de o Lakers se tornar um forte candidato ao título na próxima temporada.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">12 de Agosto de 2025</div>
+                    <h3>Kevin Durant Pede Troca do Suns</h3>
+                    <p>Em um movimento que abalou a liga, o ala Kevin Durant solicitou uma troca do Phoenix Suns. A decisão vem após uma temporada frustrante da equipe e aumenta os rumores de que a estrela busca um novo desafio para conquistar o seu tão sonhado terceiro anel de campeão. A notícia gerou uma corrida entre as equipes para adquirir o ala, o que deve agitar a agência livre.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">11 de Agosto de 2025</div>
+                    <h3>LeBron James Assina Renovação Contratual com o Lakers</h3>
+                    <p>Em uma jogada que tranquilizou os fãs do Lakers, a estrela LeBron James assinou uma extensão de contrato de dois anos com a franquia. A jogada de LeBron demonstra a intenção de encerrar sua carreira na equipe de Los Angeles e continuar lutando por um novo título.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">10 de Agosto de 2025</div>
+                    <h3>Kawhi Leonard Sofre Lesão Grave no Joelho</h3>
+                    <p>O ala do Clippers, Kawhi Leonard, sofreu uma lesão grave no joelho e ficará fora por pelo menos 8 meses. A lesão coloca em risco a temporada da estrela e a participação da equipe nos playoffs. A lesão de Kawhi é um desastre para o Clippers, que esperava lutar pelo título nesta temporada.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">09 de Agosto de 2025</div>
+                    <h3>Giannis Antetokounmpo Atinge o Recorde de 15.000 Pontos</h3>
+                    <p>A estrela do Bucks, Giannis Antetokounmpo, alcançou um marco histórico em sua carreira, atingindo a marca de 15.000 pontos. O grego se junta a um grupo seleto de jogadores que alcançaram a marca e reforça o seu status de lenda viva do basquete.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">08 de Agosto de 2025</div>
+                    <h3>Joel Embiid é Nomeado Jogador da Semana</h3>
+                    <p>A estrela do 76ers, Joel Embiid, foi nomeado o Jogador da Semana após uma série de atuações dominantes. O pivô do 76ers liderou a equipe para 3 vitórias na semana e reforçou o seu status de candidato ao prêmio de MVP. A sua atuação demonstra a força do 76ers, que luta por um lugar nos playoffs.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">07 de Agosto de 2025</div>
+                    <h3>Draft da NBA 2025: Quem Será a Primeira Escolha?</h3>
+                    <p>O Draft da NBA de 2025 está cada vez mais próximo, e as especulações sobre quem será a primeira escolha estão a todo vapor. Com a nova geração de talentos se aproximando, as equipes estão de olho nos jovens promissores para construir o futuro de suas franquias. O Draft promete ser um dos mais emocionantes dos últimos anos.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">06 de Agosto de 2025</div>
+                    <h3>Novas Regras da NBA: O Que Muda para a Próxima Temporada?</h3>
+                    <p>A NBA anunciou novas regras que devem entrar em vigor na próxima temporada. As novas regras visam melhorar o ritmo do jogo, aumentar a fluidez das partidas e tornar o jogo mais dinâmico. As mudanças prometem agitar a liga e gerar debates entre os fãs e os especialistas.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">05 de Agosto de 2025</div>
+                    <h3>Aposentadoria de Chris Paul</h3>
+                    <p>Após uma carreira brilhante, o armador Chris Paul anunciou sua aposentadoria da NBA. O 'Point God' encerra a sua carreira com o status de um dos melhores armadores da história do basquete e um legado de vitórias, assistências e liderança.</p>
+                </div>
+                <div class="news-card">
+                    <div class="source">04 de Agosto de 2025</div>
+                    <h3>O Fim da Era "Point Guard" Tradicional?</h3>
+                    <p>Com a ascensão de jogadores como Luka Doncic e Nikola Jokic, que atuam como "playmakers" de suas equipes, a função de "point guard" está mudando. A visão e o passe agora vêm de posições diferentes, e o arremesso se tornou prioridade para todos. O que isso significa para o futuro da posição?</p>
+                </div>
+            </div>
+
+            <div class="home-section stats-section">
+                <h3>Tabela de Classificação - Destaque</h3>
+                <p>Confira a situação atual da Conferência Leste e Oeste:</p>
+                <table class="stats-container">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Vitórias</th>
+                            <th>Derrotas</th>
+                            <th>%</th>
+                            <th>Conferência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Boston Celtics</td><td>64</td><td>18</td><td>.780</td><td>Leste</td></tr>
+                        <tr><td>Denver Nuggets</td><td>62</td><td>20</td><td>.756</td><td>Oeste</td></tr>
+                        <tr><td>Oklahoma City Thunder</td><td>61</td><td>21</td><td>.744</td><td>Oeste</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="home-section debate-section">
+                <h3>Debate em Destaque</h3>
+                <div class="debate-card">
+                    <h3>A Crise de Identidade do Lakers: O Fim da Era LeBron?</h3>
+                    <p>O Los Angeles Lakers, uma das franquias mais icônicas e vitoriosas da história da NBA, tem vivido um período de montanha-russa desde o título da bolha. Com a lenda **LeBron James** caminhando para o fim de sua ilustre carreira, e a equipe lutando para se manter na elite, a pergunta que ecoa entre os fãs e analistas é: este é o início do fim da "Era LeBron" na franquia? A falta de um plano de sucessão claro e as constantes trocas de jogadores e comissão técnica têm gerado mais incerteza do que esperança. **É hora de o Lakers começar a pensar em reconstrução?** O que a equipe deveria fazer para se manter competitiva? O que se espera de uma franquia com tamanho histórico? Essas são perguntas sem respostas fáceis, mas que são cruciais para o futuro de uma das maiores franquias da história da NBA.</p>
+                </div>
+            </div>
+
+            <div class="home-section shop-section">
+                <h3>Vitrine da Loja</h3>
+                <p>Produtos de alta qualidade dos times da NBA, com um design de card mais visual e organizado:</p>
+                <div class="products-grid">
+                    <div class="product-card">
+                      <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                      <div class="team-name">Camisa de Jogo - Lakers</div>
+                      <div class="product-price">R$ 199,90</div>
+                    </div>
+                    <div class="product-card">
+                      <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                      <div class="team-name">Regata Casual - Bulls</div>
+                      <div class="product-price">R$ 179,00</div>
+                    </div>
+                    <div class="product-card">
+                      <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                      <div class="team-name">Boné Snapback - Spurs</div>
+                      <div class="product-price">R$ 139,00</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="home-section minigames-section">
+                <h3>Minigames</h3>
+                <p>Divirta-se e teste seus conhecimentos sobre a NBA com o nosso **Quiz de Basquete**! Escolha entre os níveis **Fácil**, **Médio**, **Difícil** e para os mais experientes, o nível **"Real Fan"**, com perguntas elaboradas para testar até os maiores especialistas da NBA.</p>
+            </div>
+        </section>
+        
+        <section id="estatisticas" class="tab-content" style="display:none;">
+            <h2>Estatísticas da Temporada</h2>
+            
+            <h3>Tabela de Classificação da Conferência Oeste</h3>
+            <table class="stats-container">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Vitórias</th>
+                        <th>Derrotas</th>
+                        <th>%</th>
+                        <th>Jogos Atrasados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Denver Nuggets</td><td>62</td><td>20</td><td>.756</td><td>-</td></tr>
+                    <tr><td>Oklahoma City Thunder</td><td>61</td><td>21</td><td>.744</td><td>1</td></tr>
+                    <tr><td>Minnesota Timberwolves</td><td>56</td><td>26</td><td>.683</td><td>6</td></tr>
+                    <tr><td>Los Angeles Clippers</td><td>51</td><td>31</td><td>.622</td><td>11</td></tr>
+                    <tr><td>Phoenix Suns</td><td>49</td><td>33</td><td>.598</td><td>13</td></tr>
+                    <tr><td>New Orleans Pelicans</td><td>49</td><td>33</td><td>.598</td><td>13</td></tr>
+                    <tr><td>Dallas Mavericks</td><td>48</td><td>34</td><td>.585</td><td>14</td></tr>
+                    <tr><td>Sacramento Kings</td><td>46</td><td>36</td><td>.561</td><td>16</td></tr>
+                    <tr><td>Golden State Warriors</td><td>46</td><td>36</td><td>.561</td><td>16</td></tr>
+                    <tr><td>Los Angeles Lakers</td><td>44</td><td>38</td><td>.537</td><td>18</td></tr>
+                    <tr><td>Houston Rockets</td><td>41</td><td>41</td><td>.500</td><td>21</td></tr>
+                    <tr><td>Utah Jazz</td><td>31</td><td>51</td><td>.378</td><td>31</td></tr>
+                    <tr><td>Memphis Grizzlies</td><td>27</td><td>55</td><td>.329</td><td>35</td></tr>
+                    <tr><td>San Antonio Spurs</td><td>22</td><td>60</td><td>.268</td><td>40</td></tr>
+                    <tr><td>Portland Trail Blazers</td><td>21</td><td>61</td><td>.256</td><td>41</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Tabela de Classificação da Conferência Leste</h3>
+            <table class="stats-container">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Vitórias</th>
+                        <th>Derrotas</th>
+                        <th>%</th>
+                        <th>Jogos Atrasados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Boston Celtics</td><td>64</td><td>18</td><td>.780</td><td>-</td></tr>
+                    <tr><td>New York Knicks</td><td>50</td><td>32</td><td>.610</td><td>14</td></tr>
+                    <tr><td>Milwaukee Bucks</td><td>49</td><td>33</td><td>.598</td><td>15</td></tr>
+                    <tr><td>Cleveland Cavaliers</td><td>48</td><td>34</td><td>.585</td><td>16</td></tr>
+                    <tr><td>Orlando Magic</td><td>47</td><td>35</td><td>.573</td><td>17</td></tr>
+                    <tr><td>Indiana Pacers</td><td>47</td><td>35</td><td>.573</td><td>17</td></tr>
+                    <tr><td>Philadelphia 76ers</td><td>47</td><td>35</td><td>.573</td><td>17</td></tr>
+                    <tr><td>Miami Heat</td><td>46</td><td>36</td><td>.561</td><td>18</td></tr>
+                    <tr><td>Chicago Bulls</td><td>39</td><td>43</td><td>.476</td><td>25</td></tr>
+                    <tr><td>Atlanta Hawks</td><td>36</td><td>46</td><td>.439</td><td>28</td></tr>
+                    <tr><td>Brooklyn Nets</td><td>32</td><td>50</td><td>.390</td><td>32</td></tr>
+                    <tr><td>Toronto Raptors</td><td>25</td><td>57</td><td>.305</td><td>39</td></tr>
+                    <tr><td>Charlotte Hornets</td><td>21</td><td>61</td><td>.256</td><td>43</td></tr>
+                    <tr><td>Washington Wizards</td><td>15</td><td>67</td><td>.183</td><td>49</td></tr>
+                    <tr><td>Detroit Pistons</td><td>14</td><td>68</td><td>.171</td><td>50</td></tr>
+                </tbody>
+            </table>
+            
+            <br>
+            <br>
+            <h3>Líderes de Estatísticas (Fictício)</h3>
+            <table class="stats-container">
+                <thead>
+                    <tr>
+                        <th>Pontos por Jogo</th>
+                        <th>Rebotes por Jogo</th>
+                        <th>Assistências por Jogo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Joel Embiid (76ers) - 35.0</td>
+                        <td>1. Rudy Gobert (MIN) - 13.8</td>
+                        <td>1. Tyrese Haliburton (IND) - 11.5</td>
+                    </tr>
+                    <tr>
+                        <td>2. Luka Doncic (DAL) - 33.9</td>
+                        <td>2. Nikola Jokic (DEN) - 12.8</td>
+                        <td>3. Nikola Jokic (DEN) - 10.1</td>
+                    </tr>
+                    <tr>
+                        <td>3. Shai G-A (OKC) - 31.1</td>
+                        <td>3. Anthony Davis (LAL) - 12.3</td>
+                        <td>2. Luka Doncic (DAL) - 9.8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="corridas" class="tab-content" style="display:none;">
+            <h2>Corridas para os Prêmios Individuais</h2>
+            <p>Análise detalhada e o Top 10 para os principais prêmios da temporada, com base em desempenho e impacto.</p>
+            
+            <div class="award-section">
+                <h3>Corrida para MVP (Jogador Mais Valioso)</h3>
+                <ul class="player-list">
+                    <li class="player-item">
+                        <span class="player-rank">1.</span>
+                        <div class="player-stats">
+                            <strong>Nikola Jokic (Nuggets)</strong>
+                            <span>| 27.2 PPG, 12.8 RPG, 10.1 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">2.</span>
+                        <div class="player-stats">
+                            <strong>Luka Doncic (Mavericks)</strong>
+                            <span>| 33.9 PPG, 9.2 RPG, 9.8 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">3.</span>
+                        <div class="player-stats">
+                            <strong>Joel Embiid (76ers)</strong>
+                            <span>| 35.0 PPG, 11.5 RPG, 5.8 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">4.</span>
+                        <div class="player-stats">
+                            <strong>Shai Gilgeous-Alexander (Thunder)</strong>
+                            <span>| 31.1 PPG, 5.5 RPG, 6.4 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">5.</span>
+                        <div class="player-stats">
+                            <strong>Giannis Antetokounmpo (Bucks)</strong>
+                            <span>| 30.5 PPG, 11.2 RPG, 6.5 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">6.</span>
+                        <div class="player-stats">
+                            <strong>Kevin Durant (Suns)</strong>
+                            <span>| 28.9 PPG, 6.7 RPG, 5.0 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">7.</span>
+                        <div class="player-stats">
+                            <strong>LeBron James (Lakers)</strong>
+                            <span>| 27.8 PPG, 7.5 RPG, 8.2 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">8.</span>
+                        <div class="player-stats">
+                            <strong>Jayson Tatum (Celtics)</strong>
+                            <span>| 28.5 PPG, 8.7 RPG, 4.8 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">9.</span>
+                        <div class="player-stats">
+                            <strong>Tyrese Haliburton (Pacers)</strong>
+                            <span>| 20.1 PPG, 4.2 RPG, 11.5 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">10.</span>
+                        <div class="player-stats">
+                            <strong>Devin Booker (Suns)</strong>
+                            <span>| 27.5 PPG, 4.5 RPG, 7.0 APG</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="award-section">
+                <h3>Corrida para DPOY (Jogador Defensivo do Ano)</h3>
+                <ul class="player-list">
+                    <li class="player-item">
+                        <span class="player-rank">1.</span>
+                        <div class="player-stats">
+                            <strong>Victor Wembanyama (Spurs)</strong>
+                            <span>| 3.8 BPG, 1.5 SPG, 10.6 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">2.</span>
+                        <div class="player-stats">
+                            <strong>Rudy Gobert (Timberwolves)</strong>
+                            <span>| 2.1 BPG, 0.9 SPG, 13.8 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">3.</span>
+                        <div class="player-stats">
+                            <strong>Evan Mobley (Cavaliers)</strong>
+                            <span>| 1.8 BPG, 0.8 SPG, 10.3 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">4.</span>
+                        <div class="player-stats">
+                            <strong>Bam Adebayo (Heat)</strong>
+                            <span>| 1.0 BPG, 1.2 SPG, 10.4 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">5.</span>
+                        <div class="player-stats">
+                            <strong>Anthony Davis (Lakers)</strong>
+                            <span>| 2.4 BPG, 1.2 SPG, 12.3 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">6.</span>
+                        <div class="player-stats">
+                            <strong>Draymond Green (Warriors)</strong>
+                            <span>| 0.9 BPG, 1.0 SPG, 7.2 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">7.</span>
+                        <div class="player-stats">
+                            <strong>Herb Jones (Pelicans)</strong>
+                            <span>| 0.8 BPG, 1.4 SPG, 4.0 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">8.</span>
+                        <div class="player-stats">
+                            <strong>Jaren Jackson Jr. (Grizzlies)</strong>
+                            <span>| 2.6 BPG, 0.9 SPG, 5.5 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">9.</span>
+                        <div class="player-stats">
+                            <strong>Kawhi Leonard (Clippers)</strong>
+                            <span>| 0.9 BPG, 1.6 SPG, 6.1 RPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">10.</span>
+                        <div class="player-stats">
+                            <strong>Scottie Barnes (Raptors)</strong>
+                            <span>| 0.8 BPG, 1.3 SPG, 6.1 RPG</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="award-section">
+                <h3>Corrida para ROTY (Calouro do Ano)</h3>
+                <ul class="player-list">
+                    <li class="player-item">
+                        <span class="player-rank">1.</span>
+                        <div class="player-stats">
+                            <strong>Cooper Flagg (Wizards)</strong>
+                            <span>| 19.5 PPG, 8.1 RPG, 3.5 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">2.</span>
+                        <div class="player-stats">
+                            <strong>Ron Holland (Pistons)</strong>
+                            <span>| 18.9 PPG, 6.0 RPG, 3.1 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">3.</span>
+                        <div class="player-stats">
+                            <strong>Matas Buzelis (Nets)</strong>
+                            <span>| 16.7 PPG, 7.5 RPG, 2.8 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">4.</span>
+                        <div class="player-stats">
+                            <strong>Zaccharie Risacher (Jazz)</strong>
+                            <span>| 15.2 PPG, 5.5 RPG, 2.0 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">5.</span>
+                        <div class="player-stats">
+                            <strong>Nikola Topić (Hawks)</strong>
+                            <span>| 14.1 PPG, 3.0 RPG, 5.8 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">6.</span>
+                        <div class="player-stats">
+                            <strong>Donovan Clingan (Thunder)</strong>
+                            <span>| 10.5 PPG, 8.9 RPG, 1.5 BPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">7.</span>
+                        <div class="player-stats">
+                            <strong>Cody Williams (Grizzlies)</strong>
+                            <span>| 13.0 PPG, 4.2 RPG, 3.1 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">8.</span>
+                        <div class="player-stats">
+                            <strong>Devin Carter (Raptors)</strong>
+                            <span>| 11.8 PPG, 4.0 RPG, 4.5 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">9.</span>
+                        <div class="player-stats">
+                            <strong>Ja'Kobe Walter (Warriors)</strong>
+                            <span>| 10.9 PPG, 2.5 RPG, 1.5 SPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">10.</span>
+                        <div class="player-stats">
+                            <strong>Tyler Smith (Knicks)</strong>
+                            <span>| 9.8 PPG, 5.0 RPG, 1.0 BPG</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="award-section">
+                <h3>Corrida para MIP (Jogador Que Mais Evoluiu)</h3>
+                <ul class="player-list">
+                    <li class="player-item">
+                        <span class="player-rank">1.</span>
+                        <div class="player-stats">
+                            <strong>Alperen Şengün (Rockets)</strong>
+                            <span>| Aumento de 7.5 PPG, 3.2 RPG e 2.8 APG em relação à temporada anterior.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">2.</span>
+                        <div class="player-stats">
+                            <strong>Jalen Johnson (Hawks)</strong>
+                            <span>| Aumento de 6.0 PPG, 2.5 RPG e 3.1 APG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">3.</span>
+                        <div class="player-stats">
+                            <strong>Dyson Daniels (Pelicans)</strong>
+                            <span>| Aumento de 5.2 PPG, 2.0 RPG e 1.9 APG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">4.</span>
+                        <div class="player-stats">
+                            <strong>Coby White (Bulls)</strong>
+                            <span>| Aumento de 5.5 PPG, 2.8 RPG e 3.0 APG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">5.</span>
+                        <div class="player-stats">
+                            <strong>Miles Bridges (Hornets)</strong>
+                            <span>| Aumento de 4.9 PPG, 2.0 RPG e 1.5 APG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">6.</span>
+                        <div class="player-stats">
+                            <strong>Jordan Poole (Wizards)</strong>
+                            <span>| Aumento de 3.0 PPG, 1.0 RPG e 1.5 APG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">7.</span>
+                        <div class="player-stats">
+                            <strong>Anfernee Simons (Trail Blazers)</strong>
+                            <span>| Aumento de 4.1 PPG, 1.2 RPG e 1.0 APG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">8.</span>
+                        <div class="player-stats">
+                            <strong>Deni Avdija (Wizards)</strong>
+                            <span>| Aumento de 3.8 PPG, 1.5 RPG e 2.0 APG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">9.</span>
+                        <div class="player-stats">
+                            <strong>Ivica Zubac (Clippers)</strong>
+                            <span>| Aumento de 2.5 PPG, 2.0 RPG e 0.5 BPG.</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">10.</span>
+                        <div class="player-stats">
+                            <strong>Chet Holmgren (Thunder)</strong>
+                            <span>| Aumento de 1.8 PPG, 1.0 RPG e 1.0 BPG.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="award-section">
+                <h3>Corrida para Sixth Man of the Year (Melhor Sexto Homem)</h3>
+                <ul class="player-list">
+                    <li class="player-item">
+                        <span class="player-rank">1.</span>
+                        <div class="player-stats">
+                            <strong>Malik Monk (Kings)</strong>
+                            <span>| 18.0 PPG, 5.5 APG, 1.0 SPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">2.</span>
+                        <div class="player-stats">
+                            <strong>Norman Powell (Clippers)</strong>
+                            <span>| 16.5 PPG, 2.5 RPG, 1.5 SPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">3.</span>
+                        <div class="player-stats">
+                            <strong>Bobby Portis (Bucks)</strong>
+                            <span>| 15.8 PPG, 8.2 RPG, 0.8 BPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">4.</span>
+                        <div class="player-stats">
+                            <strong>Cole Anthony (Magic)</strong>
+                            <span>| 14.5 PPG, 4.0 RPG, 3.5 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">5.</span>
+                        <div class="player-stats">
+                            <strong>Caris LeVert (Cavaliers)</strong>
+                            <span>| 13.9 PPG, 3.5 APG, 1.0 SPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">6.</span>
+                        <div class="player-stats">
+                            <strong>Alex Caruso (Bulls)</strong>
+                            <span>| 9.8 PPG, 3.2 APG, 1.8 SPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">7.</span>
+                        <div class="player-stats">
+                            <strong>Tyus Jones (Wizards)</strong>
+                            <span>| 11.5 PPG, 2.5 RPG, 5.0 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">8.</span>
+                        <div class="player-stats">
+                            <strong>Russell Westbrook (Clippers)</strong>
+                            <span>| 10.2 PPG, 5.8 APG, 1.0 SPG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">9.</span>
+                        <div class="player-stats">
+                            <strong>Dennis Schröder (Nets)</strong>
+                            <span>| 12.0 PPG, 2.5 RPG, 4.5 APG</span>
+                        </div>
+                    </li>
+                    <li class="player-item">
+                        <span class="player-rank">10.</span>
+                        <div class="player-stats">
+                            <strong>Kyle Kuzma (Wizards)</strong>
+                            <span>| 19.0 PPG, 6.0 RPG, 4.0 APG</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="debates" class="tab-content" style="display:none;">
+          <h2>Debates e Análises</h2>
+          <div id="debate-list">
+              <div class="debate-card" onclick="showDebate(1)">
+                  <h3>1. O Futuro da NBA: A Era dos 'Unicórnios' e o Fim das Posições Fixas?</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(2)">
+                  <h3>2. Contratos Máximos: Um Gasto Necessário ou um Obstáculo para o Título?</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(3)">
+                  <h3>3. A Defesa Vence Campeonatos? A Verdade por Trás da Máxima do Basquete</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(4)">
+                  <h3>4. O Draft da NBA: Sorte, Ciência ou Uma Mistura dos Dois?</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(5)">
+                  <h3>5. O Legado de LeBron James: O Maior Jogador de Todos os Tempos?</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(6)">
+                  <h3>6. O Impacto da Troca de Kevin Durant no Suns</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(7)">
+                  <h3>7. O Renascimento do Basquete de Rua</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(8)">
+                  <h3>8. A Importância da Psicologia no Basquete</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(9)">
+                  <h3>9. O Basquete Feminino na Ascensão</h3>
+              </div>
+              <div class="debate-card" onclick="showDebate(10)">
+                  <h3>10. O Futuro da NBA na Inteligência Artificial</h3>
+              </div>
+          </div>
+          <div id="debate-detail" style="display:none;">
+              <button class="back-btn" onclick="hideDebate()">Voltar para a lista</button>
+              <div class="debate-content">
+                  <h3 id="debate-title"></h3>
+                  <p id="debate-text"></p>
+              </div>
+          </div>
+        </section>
+
+        <section id="loja" class="tab-content" style="display:none;">
+          <h2>Loja de Produtos</h2>
+          <p>Confira a coleção de produtos oficiais da NBA. Encontre camisas, bonés, jaquetas e muito mais dos seus times e jogadores favoritos!</p>
+
+          <div class="shop-section">
+            <h4>Conferência Leste - Divisão do Atlântico</h4>
+            <div class="products-grid">
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Logo Celtics" />
+                  <div class="team-name">Camisa de Jogo - Celtics</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Logo Celtics" />
+                  <div class="team-name">Moletom - Celtics</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Logo Celtics" />
+                  <div class="team-name">Boné - Celtics</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Logo Celtics" />
+                  <div class="team-name">Regata - Celtics</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Logo Celtics" />
+                  <div class="team-name">Jaqueta - Celtics</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Logo Celtics" />
+                  <div class="team-name">Meias - Celtics</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Logo Celtics" />
+                  <div class="team-name">Chaveiro - Celtics</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Logo Nets" />
+                  <div class="team-name">Camisa de Jogo - Nets</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Logo Nets" />
+                  <div class="team-name">Moletom - Nets</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Logo Nets" />
+                  <div class="team-name">Boné - Nets</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Logo Nets" />
+                  <div class="team-name">Regata - Nets</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Logo Nets" />
+                  <div class="team-name">Jaqueta - Nets</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Logo Nets" />
+                  <div class="team-name">Meias - Nets</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Logo Nets" />
+                  <div class="team-name">Chaveiro - Nets</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="Logo Knicks" />
+                  <div class="team-name">Camisa de Jogo - Knicks</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="Logo Knicks" />
+                  <div class="team-name">Moletom - Knicks</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="Logo Knicks" />
+                  <div class="team-name">Boné - Knicks</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="Logo Knicks" />
+                  <div class="team-name">Regata - Knicks</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="Logo Knicks" />
+                  <div class="team-name">Jaqueta - Knicks</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="Logo Knicks" />
+                  <div class="team-name">Meias - Knicks</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="Logo Knicks" />
+                  <div class="team-name">Chaveiro - Knicks</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Logo 76ers" />
+                  <div class="team-name">Camisa de Jogo - 76ers</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Logo 76ers" />
+                  <div class="team-name">Moletom - 76ers</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Logo 76ers" />
+                  <div class="team-name">Boné - 76ers</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Logo 76ers" />
+                  <div class="team-name">Regata - 76ers</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Logo 76ers" />
+                  <div class="team-name">Jaqueta - 76ers</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Logo 76ers" />
+                  <div class="team-name">Meias - 76ers</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Logo 76ers" />
+                  <div class="team-name">Chaveiro - 76ers</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Logo Raptors" />
+                  <div class="team-name">Camisa de Jogo - Raptors</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Logo Raptors" />
+                  <div class="team-name">Moletom - Raptors</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Logo Raptors" />
+                  <div class="team-name">Boné - Raptors</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Logo Raptors" />
+                  <div class="team-name">Regata - Raptors</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Logo Raptors" />
+                  <div class="team-name">Jaqueta - Raptors</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Logo Raptors" />
+                  <div class="team-name">Meias - Raptors</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Logo Raptors" />
+                  <div class="team-name">Chaveiro - Raptors</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="shop-section">
+            <h4>Conferência Leste - Divisão Central</h4>
+            <div class="products-grid">
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                  <div class="team-name">Camisa de Jogo - Bulls</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                  <div class="team-name">Moletom - Bulls</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                  <div class="team-name">Boné - Bulls</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                  <div class="team-name">Regata - Bulls</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                  <div class="team-name">Jaqueta - Bulls</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                  <div class="team-name">Meias - Bulls</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Logo Bulls" />
+                  <div class="team-name">Chaveiro - Bulls</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Logo Cavaliers" />
+                  <div class="team-name">Camisa de Jogo - Cavaliers</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Logo Cavaliers" />
+                  <div class="team-name">Moletom - Cavaliers</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Logo Cavaliers" />
+                  <div class="team-name">Boné - Cavaliers</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Logo Cavaliers" />
+                  <div class="team-name">Regata - Cavaliers</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Logo Cavaliers" />
+                  <div class="team-name">Jaqueta - Cavaliers</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Logo Cavaliers" />
+                  <div class="team-name">Meias - Cavaliers</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Logo Cavaliers" />
+                  <div class="team-name">Chaveiro - Cavaliers</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Logo Hornets" />
+                  <div class="team-name">Camisa de Jogo - Hornets</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Logo Hornets" />
+                  <div class="team-name">Moletom - Hornets</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Logo Hornets" />
+                  <div class="team-name">Boné - Hornets</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Logo Hornets" />
+                  <div class="team-name">Regata - Hornets</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Logo Hornets" />
+                  <div class="team-name">Jaqueta - Hornets</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Logo Hornets" />
+                  <div class="team-name">Meias - Hornets</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Logo Hornets" />
+                  <div class="team-name">Chaveiro - Hornets</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Logo Pistons" />
+                  <div class="team-name">Camisa de Jogo - Pistons</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Logo Pistons" />
+                  <div class="team-name">Moletom - Pistons</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Logo Pistons" />
+                  <div class="team-name">Boné - Pistons</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Logo Pistons" />
+                  <div class="team-name">Regata - Pistons</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Logo Pistons" />
+                  <div class="team-name">Jaqueta - Pistons</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Logo Pistons" />
+                  <div class="team-name">Meias - Pistons</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Logo Pistons" />
+                  <div class="team-name">Chaveiro - Pistons</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Logo Bucks" />
+                  <div class="team-name">Camisa de Jogo - Bucks</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Logo Bucks" />
+                  <div class="team-name">Moletom - Bucks</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Logo Bucks" />
+                  <div class="team-name">Boné - Bucks</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Logo Bucks" />
+                  <div class="team-name">Regata - Bucks</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Logo Bucks" />
+                  <div class="team-name">Jaqueta - Bucks</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Logo Bucks" />
+                  <div class="team-name">Meias - Bucks</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Logo Bucks" />
+                  <div class="team-name">Chaveiro - Bucks</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="shop-section">
+            <h4>Conferência Leste - Divisão Sudeste</h4>
+            <div class="products-grid">
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Camisa de Jogo - Hawks</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Moletom - Hawks</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Boné - Hawks</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Regata - Hawks</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Jaqueta - Hawks</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Meias - Hawks</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Chaveiro - Hawks</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Camisa de Jogo - Heat</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Moletom - Heat</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Boné - Heat</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Regata - Heat</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Jaqueta - Heat</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Meias - Heat</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Chaveiro - Heat</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Camisa de Jogo - Magic</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Moletom - Magic</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Boné - Magic</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Regata - Magic</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Jaqueta - Magic</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Meias - Magic</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Chaveiro - Magic</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Logo Wizards" />
+                  <div class="team-name">Camisa de Jogo - Wizards</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Logo Wizards" />
+                  <div class="team-name">Moletom - Wizards</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Logo Wizards" />
+                  <div class="team-name">Boné - Wizards</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Logo Wizards" />
+                  <div class="team-name">Regata - Wizards</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Logo Wizards" />
+                  <div class="team-name">Jaqueta - Wizards</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Logo Wizards" />
+                  <div class="team-name">Meias - Wizards</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Logo Wizards" />
+                  <div class="team-name">Chaveiro - Wizards</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Camisa de Jogo - Magic</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Moletom - Magic</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Boné - Magic</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Regata - Magic</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Jaqueta - Magic</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Meias - Magic</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Magic" />
+                  <div class="team-name">Chaveiro - Magic</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="shop-section">
+            <h4>Conferência Oeste - Divisão Noroeste</h4>
+            <div class="products-grid">
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Logo Timberwolves" />
+                  <div class="team-name">Camisa de Jogo - Timberwolves</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Logo Timberwolves" />
+                  <div class="team-name">Moletom - Timberwolves</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Logo Timberwolves" />
+                  <div class="team-name">Boné - Timberwolves</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Logo Timberwolves" />
+                  <div class="team-name">Regata - Timberwolves</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Logo Timberwolves" />
+                  <div class="team-name">Jaqueta - Timberwolves</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Logo Timberwolves" />
+                  <div class="team-name">Meias - Timberwolves</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Logo Timberwolves" />
+                  <div class="team-name">Chaveiro - Timberwolves</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Logo Nuggets" />
+                  <div class="team-name">Camisa de Jogo - Nuggets</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Logo Nuggets" />
+                  <div class="team-name">Moletom - Nuggets</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Logo Nuggets" />
+                  <div class="team-name">Boné - Nuggets</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Logo Nuggets" />
+                  <div class="team-name">Regata - Nuggets</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Logo Nuggets" />
+                  <div class="team-name">Jaqueta - Nuggets</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Logo Nuggets" />
+                  <div class="team-name">Meias - Nuggets</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Logo Nuggets" />
+                  <div class="team-name">Chaveiro - Nuggets</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Logo Sonics" />
+                  <div class="team-name">Camisa de Jogo - Thunder</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Logo Sonics" />
+                  <div class="team-name">Moletom - Thunder</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Logo Sonics" />
+                  <div class="team-name">Boné - Thunder</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Logo Sonics" />
+                  <div class="team-name">Regata - Thunder</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Logo Sonics" />
+                  <div class="team-name">Jaqueta - Thunder</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Logo Sonics" />
+                  <div class="team-name">Meias - Thunder</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Logo Sonics" />
+                  <div class="team-name">Chaveiro - Thunder</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Logo Blazers" />
+                  <div class="team-name">Camisa de Jogo - Blazers</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Logo Blazers" />
+                  <div class="team-name">Moletom - Blazers</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Logo Blazers" />
+                  <div class="team-name">Boné - Blazers</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Logo Blazers" />
+                  <div class="team-name">Regata - Blazers</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Logo Blazers" />
+                  <div class="team-name">Jaqueta - Blazers</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Logo Blazers" />
+                  <div class="team-name">Meias - Blazers</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Logo Blazers" />
+                  <div class="team-name">Chaveiro - Blazers</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Logo Jazz" />
+                  <div class="team-name">Camisa de Jogo - Jazz</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Logo Jazz" />
+                  <div class="team-name">Moletom - Jazz</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Logo Jazz" />
+                  <div class="team-name">Boné - Jazz</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Logo Jazz" />
+                  <div class="team-name">Regata - Jazz</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Logo Jazz" />
+                  <div class="team-name">Jaqueta - Jazz</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Logo Jazz" />
+                  <div class="team-name">Meias - Jazz</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Logo Jazz" />
+                  <div class="team-name">Chaveiro - Jazz</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="shop-section">
+            <h4>Conferência Oeste - Divisão do Pacífico</h4>
+            <div class="products-grid">
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Logo Warriors" />
+                  <div class="team-name">Camisa de Jogo - Warriors</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Logo Warriors" />
+                  <div class="team-name">Moletom - Warriors</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Logo Warriors" />
+                  <div class="team-name">Boné - Warriors</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Logo Warriors" />
+                  <div class="team-name">Regata - Warriors</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Logo Warriors" />
+                  <div class="team-name">Jaqueta - Warriors</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Logo Warriors" />
+                  <div class="team-name">Meias - Warriors</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Logo Warriors" />
+                  <div class="team-name">Chaveiro - Warriors</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="Logo Clippers" />
+                  <div class="team-name">Camisa de Jogo - Clippers</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="Logo Clippers" />
+                  <div class="team-name">Moletom - Clippers</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="Logo Clippers" />
+                  <div class="team-name">Boné - Clippers</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="Logo Clippers" />
+                  <div class="team-name">Regata - Clippers</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="Logo Clippers" />
+                  <div class="team-name">Jaqueta - Clippers</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="Logo Clippers" />
+                  <div class="team-name">Meias - Clippers</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="Logo Clippers" />
+                  <div class="team-name">Chaveiro - Clippers</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                  <div class="team-name">Camisa de Jogo - Lakers</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                  <div class="team-name">Moletom - Lakers</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                  <div class="team-name">Boné - Lakers</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                  <div class="team-name">Regata - Lakers</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                  <div class="team-name">Jaqueta - Lakers</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                  <div class="team-name">Meias - Lakers</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Logo Lakers" />
+                  <div class="team-name">Chaveiro - Lakers</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Logo Suns" />
+                  <div class="team-name">Camisa de Jogo - Suns</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Logo Suns" />
+                  <div class="team-name">Moletom - Suns</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Logo Suns" />
+                  <div class="team-name">Boné - Suns</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Logo Suns" />
+                  <div class="team-name">Regata - Suns</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Logo Suns" />
+                  <div class="team-name">Jaqueta - Suns</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Logo Suns" />
+                  <div class="team-name">Meias - Suns</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Logo Suns" />
+                  <div class="team-name">Chaveiro - Suns</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Logo Kings" />
+                  <div class="team-name">Camisa de Jogo - Kings</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Logo Kings" />
+                  <div class="team-name">Moletom - Kings</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Logo Kings" />
+                  <div class="team-name">Boné - Kings</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Logo Kings" />
+                  <div class="team-name">Regata - Kings</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Logo Kings" />
+                  <div class="team-name">Jaqueta - Kings</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Logo Kings" />
+                  <div class="team-name">Meias - Kings</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Logo Kings" />
+                  <div class="team-name">Chaveiro - Kings</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="shop-section">
+            <h4>Conferência Oeste - Divisão Sudoeste</h4>
+            <div class="products-grid">
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Logo Mavericks" />
+                  <div class="team-name">Camisa de Jogo - Mavericks</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Logo Mavericks" />
+                  <div class="team-name">Moletom - Mavericks</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Logo Mavericks" />
+                  <div class="team-name">Boné - Mavericks</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Logo Mavericks" />
+                  <div class="team-name">Regata - Mavericks</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Logo Mavericks" />
+                  <div class="team-name">Jaqueta - Mavericks</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Logo Mavericks" />
+                  <div class="team-name">Meias - Mavericks</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Logo Mavericks" />
+                  <div class="team-name">Chaveiro - Mavericks</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Logo Rockets" />
+                  <div class="team-name">Camisa de Jogo - Rockets</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Logo Rockets" />
+                  <div class="team-name">Moletom - Rockets</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Logo Rockets" />
+                  <div class="team-name">Boné - Rockets</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Logo Rockets" />
+                  <div class="team-name">Regata - Rockets</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Logo Rockets" />
+                  <div class="team-name">Jaqueta - Rockets</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Logo Rockets" />
+                  <div class="team-name">Meias - Rockets</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Logo Rockets" />
+                  <div class="team-name">Chaveiro - Rockets</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Grizzlies" />
+                  <div class="team-name">Camisa de Jogo - Grizzlies</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Grizzlies" />
+                  <div class="team-name">Moletom - Grizzlies</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Grizzlies" />
+                  <div class="team-name">Boné - Grizzlies</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Grizzlies" />
+                  <div class="team-name">Regata - Grizzlies</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Grizzlies" />
+                  <div class="team-name">Jaqueta - Grizzlies</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Grizzlies" />
+                  <div class="team-name">Meias - Grizzlies</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Logo Grizzlies" />
+                  <div class="team-name">Chaveiro - Grizzlies</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="Logo Pelicans" />
+                  <div class="team-name">Camisa de Jogo - Pelicans</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="Logo Pelicans" />
+                  <div class="team-name">Moletom - Pelicans</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="Logo Pelicans" />
+                  <div class="team-name">Boné - Pelicans</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="Logo Pelicans" />
+                  <div class="team-name">Regata - Pelicans</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="Logo Pelicans" />
+                  <div class="team-name">Jaqueta - Pelicans</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="Logo Pelicans" />
+                  <div class="team-name">Meias - Pelicans</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="Logo Pelicans" />
+                  <div class="team-name">Chaveiro - Pelicans</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                  <div class="team-name">Camisa de Jogo - Spurs</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                  <div class="team-name">Moletom - Spurs</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                  <div class="team-name">Boné - Spurs</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                  <div class="team-name">Regata - Spurs</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                  <div class="team-name">Jaqueta - Spurs</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                  <div class="team-name">Meias - Spurs</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="Logo Spurs" />
+                  <div class="team-name">Chaveiro - Spurs</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="shop-section">
+            <h4>Conferência Leste - Divisão Sudoeste</h4>
+            <div class="products-grid">
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Camisa de Jogo - Hawks</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Moletom - Hawks</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Boné - Hawks</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Regata - Hawks</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Jaqueta - Hawks</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Meias - Hawks</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Logo Hawks" />
+                  <div class="team-name">Chaveiro - Hawks</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+              
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Camisa de Jogo - Heat</div>
+                  <div class="product-price">R$ 199,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Moletom - Heat</div>
+                  <div class="product-price">R$ 250,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Boné - Heat</div>
+                  <div class="product-price">R$ 139,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Regata - Heat</div>
+                  <div class="product-price">R$ 179,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Jaqueta - Heat</div>
+                  <div class="product-price">R$ 450,00</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Meias - Heat</div>
+                  <div class="product-price">R$ 49,90</div>
+              </div>
+              <div class="product-card">
+                  <img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Logo Heat" />
+                  <div class="team-name">Chaveiro - Heat</div>
+                  <div class="product-price">R$ 29,90</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="calendario" class="tab-content" style="display:none;">
+            <h2>Calendário de Jogos</h2>
+            <p>Confira a programação dos próximos jogos da NBA, com horários e transmissões. Não perca nenhum lance da temporada!</p>
+            <div class="calendar-section">
+                <h3>Jogos de Hoje (15/08/2025)</h3>
+                <p><strong>21:00 - Los Angeles Lakers vs. Boston Celtics</strong></p>
+                <p>Transmissão: ESPN, Star+</p>
+                <hr>
+                <p><strong>21:30 - Milwaukee Bucks vs. Phoenix Suns</strong></p>
+                <p>Transmissão: Amazon Prime Video</p>
+                <hr>
+                <p><strong>22:00 - Dallas Mavericks vs. Golden State Warriors</strong></p>
+                <p>Transmissão: TNT Sports</p>
+                <hr>
+            </div>
+            <div class="calendar-section">
+                <h3>Jogos de Amanhã (16/08/2025)</h3>
+                <p><strong>20:00 - Toronto Raptors vs. Brooklyn Nets</strong></p>
+                <p>Transmissão: SporTV</p>
+                <hr>
+                <p><strong>21:00 - Denver Nuggets vs. Sacramento Kings</strong></p>
+                <p>Transmissão: ESPN, Star+</p>
+                <hr>
+                <p><strong>23:00 - Portland Trail Blazers vs. Houston Rockets</strong></p>
+                <p>Transmissão: Amazon Prime Video</p>
+                <hr>
+            </div>
+        </section>
+        
+        <section id="minigames" class="tab-content" style="display:none;">
+          <h2>Minigames</h2>
+          <p>Desafie-se com nossos minigames temáticos da NBA! Selecione um jogo para começar a diversão.</p>
+          <div id="hangman-container">
+              <h3>Jogo da Forca - NBA</h3>
+              <p>Descubra a palavra secreta relacionada ao universo do basquete. Você tem 6 chances!</p>
+              <div id="hangman-image">
+                  <img src="http://hangman-images.com/0.png" alt="Forca" />
+              </div>
+              <div id="word-display"></div>
+              <div id="clue-text"></div>
+              <div id="message"></div>
+              <input type="text" id="letter-input" maxlength="1" />
+              <button class="hangman-btns" onclick="checkGuess()">Adivinhar Letra</button>
+              <button class="hangman-btns" onclick="resetGame()">Novo Jogo</button>
+          </div>
+        </section>
+
+      </main>
+      
+      <script>
+        // Lógica para alternar as abas
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.dataset.tab;
+
+                tabContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                document.getElementById(targetTab).style.display = 'block';
+                button.classList.add('active');
+            });
+        });
+
+        // Lógica dos Debates
+        const debates = {
+            1: {
+                title: "O Futuro da NBA: A Era dos 'Unicórnios' e o Fim das Posições Fixas?",
+                text: "O basquete está em constante evolução, e a última década testemunhou uma mudança drástica. Jogadores como Nikola Jokic e Victor Wembanyama, os 'unicórnios' da liga, desafiam as noções tradicionais de posições. Jokic, um pivô, joga como um armador, distribuindo passes incríveis e comandando o ataque do Nuggets. Wembanyama, com sua envergadura e agilidade, defende todas as posições e pontua como um ala. Essa tendência sugere que a antiga rigidez das posições (pivô, ala-pivô, ala, ala-armador e armador) pode estar com os dias contados. O basquete de hoje valoriza a versatilidade, e equipes com jogadores que podem atuar em múltiplas funções têm uma vantagem competitiva significativa. A capacidade de um pivô arremessar de três, de um armador defender o garrafão e de um ala organizar o ataque se tornou a norma, não a exceção. Isso torna o jogo mais dinâmico e imprevisível, mas levanta a questão: estamos vendo o fim das posições no basquete, ou apenas uma adaptação para um jogo mais moderno e fluido?"
+            },
+            2: {
+                title: "Contratos Máximos: Um Gasto Necessário ou um Obstáculo para o Título?",
+                text: "Em um mundo onde os salários da NBA disparam, a decisão de dar um contrato máximo a um jogador se tornou um dos maiores dilemas para as franquias. De um lado, você garante o talento e a lealdade de uma superestrela, mantendo-a na equipe por anos. De outro, esse único contrato pode consumir uma parte massiva do teto salarial, dificultando a construção de um elenco profundo e de qualidade ao redor do astro. A história recente da liga nos dá exemplos de ambos os lados. Times como o Golden State Warriors, com seus contratos máximos para Stephen Curry e Klay Thompson, conseguiram construir uma dinastia. No entanto, outras equipes, ao comprometerem grandes quantias de dinheiro, acabaram estagnadas, sem flexibilidade para se reforçar. O sucesso de um contrato máximo depende não só do desempenho do jogador em quadra, mas também da capacidade da gestão de encontrar peças complementares com salários mais acessíveis. É um jogo de alto risco, mas que pode valer a pena se o jogador for realmente um MVP, capaz de carregar a franquia para o título."
+            },
+            3: {
+                title: "A Defesa Vence Campeonatos? A Verdade por Trás da Máxima do Basquete",
+                text: "A frase 'a defesa vence campeonatos' é uma das mais antigas e repetidas no basquete. Mas, na era do 'pace-and-space', com arremessos de três pontos cada vez mais presentes, essa máxima ainda se aplica? Historicamente, times com defesas de elite, como os Bad Boy Pistons ou o Chicago Bulls de Michael Jordan, dominavam a liga. A defesa não só parava o adversário, mas também gerava oportunidades de ataque. Hoje, a ênfase é em pontuar. No entanto, uma análise mais profunda revela que as equipes campeãs da NBA continuam a ter defesas sólidas, mesmo que não sejam o foco principal das manchetes. A defesa de um time como o Boston Celtics, por exemplo, é a base para o seu sucesso. Uma boa defesa permite que a equipe se adapte a noites ruins no ataque e mantém o jogo competitivo, mesmo contra equipes que estão em uma noite inspirada. A defesa pode não ser a parte mais glamorosa do basquete, mas a capacidade de limitar o adversário, forçar erros e dominar a quadra defensivamente continua sendo a base para qualquer equipe que queira chegar à glória."
+            },
+            4: {
+                title: "O Draft da NBA: Sorte, Ciência ou Uma Mistura dos Dois?",
+                text: "O Draft da NBA é o momento de maior expectativa e, ao mesmo tempo, de maior incerteza para as franquias. Será que a escolha de um futuro astro é uma questão de pura sorte, ou existe uma ciência por trás disso? As equipes investem milhões em análises, observadores e algoritmos para tentar prever quem será o próximo grande nome da liga. Eles analisam estatísticas, vídeos de jogos, entrevistas e até a personalidade dos jovens talentos. No entanto, mesmo com todo esse trabalho, erros acontecem. Alguns jogadores que eram considerados escolhas seguras acabam não correspondendo às expectativas, enquanto outros, que foram subestimados, se tornam superestrelas. O sucesso de uma escolha no draft depende de uma série de fatores, como o fit cultural com a equipe, a comissão técnica e a capacidade do jogador de se adaptar a um novo nível de competição. O draft é, em sua essência, um ato de fé no futuro. Embora as equipes tentem minimizar os riscos, a verdade é que, no final das contas, existe um elemento de sorte que não pode ser ignorado."
+            },
+            5: {
+                title: "O Legado de LeBron James: O Maior Jogador de Todos os Tempos?",
+                text: "A discussão sobre quem é o maior jogador de todos os tempos, ou GOAT (Greatest of All Time), é uma das mais antigas e acaloradas no mundo do basquete. E a cada ano que passa, o nome de LeBron James se torna mais forte nessa conversa. Seus defensores apontam para sua longevidade, sua capacidade de ser dominante em diferentes equipes e em diferentes posições, e sua incrível versatilidade. Ele é o único jogador da história a ser campeão com três times diferentes e a ter liderado a liga em pontos, rebotes e assistências. Além disso, seu impacto fora da quadra é indiscutível. No entanto, os críticos ainda apontam para o número de títulos, que ainda o coloca atrás de Michael Jordan, e para algumas atuações em finais que, para eles, não foram tão dominantes quanto as de Jordan. Mas a questão não é apenas sobre números. É sobre o impacto, a resiliência e a capacidade de se reinventar. A longevidade de LeBron é uma prova de sua dedicação e inteligência. E se considerarmos o que ele fez pelo esporte, é difícil argumentar que ele não é o GOAT."
+            },
+            6: {
+                title: "O Impacto da Troca de Kevin Durant no Suns",
+                text: "A chegada de Kevin Durant ao Phoenix Suns gerou uma expectativa enorme, mas os resultados até agora foram mistos. A ideia era formar um 'Big Three' com ele, Devin Booker e Bradley Beal, mas as lesões e a falta de entrosamento fizeram com que a equipe não alcançasse o potencial esperado. Isso levanta a questão: foi uma troca que valeu a pena? A equipe abriu mão de jovens talentos e escolhas de draft para trazer um dos maiores cestinhas da história, mas a combinação de talentos não se traduziu em vitórias. Os críticos argumentam que a troca não deu à equipe a profundidade necessária e que o elenco se tornou muito dependente de três jogadores, sem um banco forte. No entanto, os defensores da troca apontam que a equipe ainda tem o potencial para ser uma das melhores do Oeste se os jogadores se mantiverem saudáveis. A troca de Durant é um exemplo perfeito dos riscos e recompensas de uma negociação de alto perfil na NBA. O sucesso não é garantido, mesmo com um elenco cheio de estrelas."
+            },
+            7: {
+                title: "O Renascimento do Basquete de Rua",
+                text: "O basquete de rua, ou 'streetball', tem um papel fundamental na cultura do esporte. É a essência do jogo, a paixão, a criatividade e a expressão individual. Nos últimos anos, com a ascensão das redes sociais e do YouTube, o basquete de rua tem vivido um renascimento. Jogadores que não estão na NBA, mas que têm um talento incrível, estão sendo reconhecidos e ganhando popularidade. Torneios como o 'Drew League' e o 'Rucker Park' voltaram a atrair a atenção do público, e a habilidade dos jogadores é impressionante. Essa nova onda de popularidade mostra que o basquete é mais do que apenas a NBA. É uma forma de arte, uma comunidade e uma paixão que transcende o profissionalismo. O basquete de rua é uma celebração da habilidade pura e do amor pelo jogo, e é inspirador ver como ele continua a evoluir e a atrair novos fãs."
+            },
+            8: {
+                title: "A Importância da Psicologia no Basquete",
+                text: "O basquete é um jogo de habilidade, mas a psicologia de um jogador e de uma equipe é tão importante quanto o talento físico. A capacidade de um jogador de lidar com a pressão, de se recuperar de um erro e de manter o foco em momentos decisivos é o que separa os grandes dos bons. E a psicologia de uma equipe, o entrosamento, a confiança e a capacidade de se comunicar em quadra, é o que faz a diferença entre um time bom e um campeão. A psicologia do esporte tem ganhado cada vez mais atenção na NBA, com equipes investindo em psicólogos e coaches de mentalidade para ajudar os jogadores a se prepararem para os desafios do esporte. A resiliência, a autoconfiança e a capacidade de se recuperar de um fracasso são habilidades essenciais, e o basquete é um lembrete constante de que o jogo é tão mental quanto físico."
+            },
+            9: {
+                title: "O Basquete Feminino na Ascensão",
+                text: "O basquete feminino tem vivido um momento de crescimento e popularidade, com a WNBA e o basquete universitário feminino atraindo cada vez mais atenção. Jogadoras como Caitlin Clark, Angel Reese e A'ja Wilson se tornaram nomes conhecidos e a habilidade e o talento em quadra são inegáveis. A popularidade do basquete feminino é um sinal de que o esporte está evoluindo e que o público está cada vez mais interessado em ver o talento de alto nível, independentemente do gênero. A WNBA tem investido em marketing e em um salário mais justo para as jogadoras, o que tem atraído mais talentos e melhorado a qualidade do jogo. O futuro do basquete feminino é brilhante, e é um lembrete de que o esporte é para todos."
+            },
+            10: {
+                title: "O Futuro da NBA na Inteligência Artificial",
+                text: "A inteligência artificial tem um papel cada vez maior na análise e na gestão de equipes da NBA. De sistemas que analisam o desempenho de jogadores e ajudam na tomada de decisões em tempo real, a algoritmos que preveem o potencial de jovens talentos no draft, a IA está mudando o esporte. As equipes usam a IA para otimizar táticas, identificar talentos e até para prever o risco de lesões. No entanto, a IA não é uma solução mágica. O basquete é um jogo de emoções, de criatividade e de talento humano, e a IA não pode replicar isso. A IA é uma ferramenta, mas não pode substituir a intuição de um bom técnico ou a liderança de um grande jogador. O futuro do basquete na inteligência artificial é promissor, mas a paixão e a emoção do esporte continuarão a ser o que o torna tão especial."
+            }
+        };
+
+        function showDebate(id) {
+            const debateList = document.getElementById('debate-list');
+            const debateDetail = document.getElementById('debate-detail');
+            const debateTitle = document.getElementById('debate-title');
+            const debateText = document.getElementById('debate-text');
+
+            const debate = debates[id];
+            debateTitle.textContent = debate.title;
+            debateText.textContent = debate.text;
+
+            debateList.style.display = 'none';
+            debateDetail.style.display = 'block';
+        }
+
+        function hideDebate() {
+            const debateList = document.getElementById('debate-list');
+            const debateDetail = document.getElementById('debate-detail');
+
+            debateList.style.display = 'block';
+            debateDetail.style.display = 'none';
+        }
+
+        // Lógica do Minigame (Jogo da Forca)
+        const words = [
+            { word: "Cesta", clue: "O objetivo de um arremesso." },
+            { word: "Quadra", clue: "Onde o jogo é jogado." },
+            { word: "Drible", clue: "Habilidade de quicar a bola." },
+            { word: "Lakers", clue: "Um dos times mais famosos de Los Angeles." },
+            { word: "Mavericks", clue: "Time de Dallas do jogador Luka Doncic." },
+            { word: "Arremesso", clue: "O ato de lançar a bola para a cesta." },
+            { word: "Defesa", clue: "Ação de impedir que o adversário pontue." },
+            { word: "Rebote", clue: "Pegar a bola após um arremesso." },
+            { word: "Falta", clue: "Infração que resulta em lance livre." },
+            { word: "Pivô", clue: "Posição de jogador geralmente alto e forte." },
+            { word: "Tecnico", clue: "A pessoa que comanda o time." },
+            { word: "MVP", clue: "O prêmio de melhor jogador da temporada." },
+            { word: "Playoffs", clue: "A fase final da temporada." },
+            { word: "Assistência", clue: "Passe que resulta em uma cesta." },
+            { word: "Bloqueio", clue: "Ação de impedir um arremesso." },
+            { word: "TripleDouble", clue: "Quando um jogador atinge dois digitos em 3 categorias." },
+        ];
+
+        let selectedWord = {};
+        let guessedLetters = [];
+        let mistakes = 0;
+        const maxMistakes = 6;
+        const hangmanImage = document.getElementById('hangman-image');
+        const wordDisplay = document.getElementById('word-display');
+        const letterInput = document.getElementById('letter-input');
+        const messageDisplay = document.getElementById('message');
+        const clueText = document.getElementById('clue-text');
+
+        function selectNewWord() {
+            const randomIndex = Math.floor(Math.random() * words.length);
+            selectedWord = words[randomIndex];
+            guessedLetters = [];
+            mistakes = 0;
+            updateDisplay();
+            messageDisplay.textContent = "";
+            clueText.textContent = `Dica: ${selectedWord.clue}`;
+        }
+
+        function updateDisplay() {
+            let display = "";
+            for (const letter of selectedWord.word.toUpperCase()) {
+                if (guessedLetters.includes(letter) || letter === ' ') {
+                    display += letter + " ";
+                } else {
+                    display += "_ ";
+                }
+            }
+            wordDisplay.textContent = display.trim();
+            hangmanImage.querySelector('img').src = `https://www.html.am/images/hangman/${mistakes}.png`;
+        }
+        
+        const motivationalMessages = [
+            "Não desista! O próximo arremesso pode ser a cesta da vitória.",
+            "Continue tentando! Grandes jogadas nascem da persistência.",
+            "Um erro não te define. O que te define é como você se levanta e continua lutando.",
+            "Mantenha o foco, a vitória está ao seu alcance!",
+            "Cada falha é uma chance de aprender. A próxima tentativa será melhor."
+        ];
+
+        function checkGuess() {
+            const guess = letterInput.value.toUpperCase();
+            letterInput.value = "";
+
+            if (!guess || guess.length !== 1) {
+                messageDisplay.textContent = "Por favor, digite uma única letra.";
+                return;
+            }
+            
+            if (guessedLetters.includes(guess)) {
+                messageDisplay.textContent = `Você já tentou a letra "${guess}". Tente outra.`;
+                return;
+            }
+
+            guessedLetters.push(guess);
+
+            if (selectedWord.word.toUpperCase().includes(guess)) {
+                messageDisplay.textContent = "Boa! Você acertou!";
+            } else {
+                mistakes++;
+                messageDisplay.textContent = motivationalMessages[Math.min(mistakes - 1, motivationalMessages.length - 1)];
+            }
+            
+            updateDisplay();
+            checkGameState();
+        }
+
+        function checkGameState() {
+            const currentWord = wordDisplay.textContent.replace(/ /g, '');
+            if (currentWord === selectedWord.word.toUpperCase()) {
+                messageDisplay.textContent = `Parabéns, você acertou! A palavra era: ${selectedWord.word}`;
+                letterInput.disabled = true;
+            } else if (mistakes >= maxMistakes) {
+                messageDisplay.textContent = `Que pena, você perdeu! A palavra era: ${selectedWord.word}.`;
+                letterInput.disabled = true;
+            }
+        }
+        
+        function resetGame() {
+            letterInput.disabled = false;
+            selectNewWord();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            selectNewWord();
+        });
+
+      </script>
+
+    </body>
+    </html>
